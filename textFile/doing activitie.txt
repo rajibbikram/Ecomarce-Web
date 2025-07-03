@@ -1,0 +1,20 @@
+first day vdo ======> 1:43:36 MIN to filter product here
+2:17:00 time for create user ain last  JWT token
+2:44:00m  role 
+
+3:05:00 RESET PASSWORD/ WITH  sending mail in email.
+
+3:37:00  update PASSWORD and update user profile
+
+3:46:00 change role and delete user by admin
+
+4:00:00  here about to describe reating ratings also there small bug where i cant fix
+
+4:18:00 here is order create
+
+
+4:44:00  in this time  starting frontend ....
+
+5:24:00 in this time to create redux store.js
+
+6:2:00  product details 
