@@ -13,7 +13,6 @@ export const userReducer = (state = { user: {} }, action) => {
     case LOGIN_REQUEST:
     case REGISTER_USER_REQUEST:
       return {
-        ...state, // preserve existing state properties
         loading: true,
         isAuthenticated: false,
       };
