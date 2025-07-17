@@ -1,0 +1,245 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@keyframes fadeInLoginModal {
+  from { opacity: 0; transform: scale(0.97) translateY(30px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.LoginSignUpContainer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(44,62,80,0.18);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  z-index: 1000;
+  animation: fadeInLoginModal 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.loginSignUpBox {
+  background: #fff;
+  padding: 24px 32px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+  min-width: 420px;
+  min-height: 480px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInLoginModal 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.login_signUp_toggle {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  margin-bottom: 28px;
+  cursor: pointer;
+  background: #f8f9fa;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.04);
+}
+.login_signUp_toggle p {
+  font-weight: 800;
+  font-size: 1.18rem;
+  margin: 0;
+  padding: 12px 36px;
+  color: #7b8a97;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+  border-radius: 10px 10px 0 0;
+  z-index: 2;
+}
+.login_signUp_toggle p.active {
+  color: #3498db;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+}
+.login_signUp_toggle button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 4px;
+  background: linear-gradient(90deg, #3498db 60%, #f1c40f 100%);
+  border: none;
+  border-radius: 5px 5px 0 0;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+.loginEmail, .loginPassword,
+.signUpEmail, .signUpPassword, .signUpName {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #e0e4ea;
+  border-radius: 8px;
+  margin-bottom: 22px;
+  padding: 10px 14px;
+  background: #f8f9fa;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 1px 4px rgba(44,62,80,0.04);
+}
+.loginEmail:focus-within, .loginPassword:focus-within,
+.signUpEmail:focus-within, .signUpPassword:focus-within, .signUpName:focus-within {
+  border-color: #3498db;
+  box-shadow: 0 2px 8px rgba(52,152,219,0.10);
+}
+input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.05rem;
+  padding-left: 12px;
+  background: transparent;
+  color: #2c3e50;
+}
+.loginEmail svg, .loginPassword svg,
+.signUpEmail svg, .signUpPassword svg {
+  color: #3498db;
+  font-size: 1.4rem;
+}
+.loginBtn, .signUpBtn {
+  padding: 14px 0;
+  background: linear-gradient(90deg, #3498db 60%, #2c3e50 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 800;
+  font-size: 1.08rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+  margin-top: 8px;
+}
+.loginBtn:active, .signUpBtn:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px rgba(44,62,80,0.10);
+}
+.loginBtn:hover, .signUpBtn:hover {
+  background: linear-gradient(90deg, #2c3e50 60%, #3498db 100%);
+}
+.loginForm a {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: #3498db;
+  text-decoration: none;
+  align-self: flex-end;
+  transition: color 0.2s;
+}
+.loginForm a:hover {
+  text-decoration: underline;
+  color: #2c3e50;
+}
+#registerImage {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+#registerImage img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #e0e4ea;
+}
+#registerImage >input::file-selector-button{
+  cursor: pointer;
+  width: 100%;
+  z-index: 2;
+  height: 5vh;
+  margin: 0%;
+  border: none;
+  color: black;
+  background-color: #ede6e6;
+  border-radius: 5px;
+  transition:  0.5s;
+}
+#registerImage >input::file-selector-button:hover{
+  background-color: #c7c2c2;
+}
+.loginForm, .signUpForm {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.loginForm {
+  z-index: 2;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.signUpForm {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Switching States */
+.shiftToLeft {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shiftToRight {
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+}
+
+.shiftToNeutral {
+  transform: translateX(0%);
+}
+
+.shiftToNeutralForm {
+  transform: translateX(0%);
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  z-index: 2 !important;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.Toastify__toast {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media (max-width: 900px) {
+  .loginSignUpBox {
+    min-width: 80vw;
+    min-height: 500px;
+    padding: 18px 12px;
+  }
+  .login_signUp_toggle p {
+    font-size: 1.08rem;
+    padding: 10px 18px;
+  }
+}
+@media (max-width: 600px) {
+  .loginSignUpBox {
+    min-width: 96vw;
+    min-height: auto;
+    height: auto;
+    padding: 12px 4px;
+    border-radius: 10px;
+  }
+  .login_signUp_toggle p {
+    font-size: 0.98rem;
+    padding: 7px 8px;
+  }
+  .LoginSignUpContainer {
+    padding: 6px;
+    align-items: flex-start;
+  }
+}

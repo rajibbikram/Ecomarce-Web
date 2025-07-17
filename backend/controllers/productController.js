@@ -3,9 +3,11 @@ const Product = require("../models/productModel");
 const ErrorHandler = require("../utils/errorhander");
 const ApiFeatures = require("../utils/apifeatures");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const e = require("express");
 
 // Create Product
 exports.createProduct = async (req, res, next) => {
+
   try {
     req.body.user = req.user.id;
     const product = await Product.create(req.body);
@@ -40,7 +42,7 @@ exports.getAllProducts = async (req, res) => {
     res.status(200).json({
       success: true,
       products,
-      productsCount,
+      productCount: productsCount,
     });
   } catch (error) {
     res.status(500).json({

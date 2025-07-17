@@ -10,17 +10,37 @@ import {
 } from "../constants/productConstants";
 
 // Fetch all products
-export const getProduct = () => async (dispatch) => {
+export const getProduct = (keyword="", page=1, price=null, category=null) => async (dispatch) => {
     try {
         dispatch({ type: ALL_PRODUCT_REQUEST });
 
-        const { data } = await axios.get("/api/v1/products");
+        let link = `/api/v1/products?page=${page}`;
+        
+        if (keyword) {
+            link += `&keyword=${keyword}`;
+        }
+
+        if (price && price.length === 2 && price[0] !== null && price[1] !== null) {
+            link += `&price[gte]=${price[0]}&price[lte]=${price[1]}`;
+        }
+
+        if (category && category !== "All") {
+            link += `&category=${encodeURIComponent(category)}`;
+        }
+
+        console.log("Searching with keyword:", keyword, "page:", page, "price:", price, "category:", category);
+        console.log("API Link:", link);
+
+        const { data } = await axios.get(link);
+
+        console.log("API Response:", data);
 
         dispatch({
             type: ALL_PRODUCT_SUCCESS,
             payload: data,
         });
     } catch (error) {
+        console.error("Search Error:", error);
         dispatch({
             type: ALL_PRODUCT_FAIL,
             payload: error.response?.data?.message || error.message,
