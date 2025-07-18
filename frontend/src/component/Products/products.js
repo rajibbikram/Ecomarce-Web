@@ -20,11 +20,9 @@ const Products = () => {
     const categories = [
         'All',
         'Electronics',
-        'Clothing',
         'Books',
-        'Shoes',
         'fruit',
-        'Home',
+        
     ];
 
     const keyword = searchParams.get('keyword');

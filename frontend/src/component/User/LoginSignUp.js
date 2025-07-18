@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./LoginSignUp.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import FaceIcon from "@mui/icons-material/Face";
@@ -45,14 +45,12 @@ const LoginSignUp = () => {
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
       const reader = new FileReader();
-
       reader.onload = () => {
         if (reader.readyState === 2) {
           setAvatarPreview(reader.result);
           setAvatar(reader.result);
         }
       };
-
       reader.readAsDataURL(e.target.files[0]);
     } else {
       setUser({ ...user, [e.target.name]: e.target.value });
@@ -67,9 +65,8 @@ const LoginSignUp = () => {
 
     if (isAuthenticated) {
       toast.success("Login successful!");
-      navigate("/account");
     }
-  }, [dispatch, error, isAuthenticated, navigate]);
+  }, [dispatch, error, isAuthenticated]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -85,6 +82,11 @@ const LoginSignUp = () => {
     }
   };
 
+  // ✅ If already authenticated, redirect to home
+  if (isAuthenticated) {
+    return <Navigate to="/home" />;
+  }
+
   return (
     <div className="LoginSignUpContainer">
       <div className="loginSignUpBox">
@@ -94,6 +96,7 @@ const LoginSignUp = () => {
           <button ref={switcherTab}></button>
         </div>
 
+        {/* Login Form */}
         <form
           className="loginForm shiftToNeutral"
           ref={loginTab}
@@ -122,9 +125,15 @@ const LoginSignUp = () => {
           </div>
 
           <Link to="/password/forget">Forget Password?</Link>
-          <input type="submit" value={loading ? "Loading..." : "Login"} className="loginBtn" disabled={loading} />
+          <input
+            type="submit"
+            value={loading ? "Loading..." : "Login"}
+            className="loginBtn"
+            disabled={loading}
+          />
         </form>
 
+        {/* Register Form */}
         <form
           className="signUpForm"
           ref={registerTab}
@@ -177,7 +186,12 @@ const LoginSignUp = () => {
             />
           </div>
 
-          <input type="submit" value={loading ? "Loading..." : "Register"} className="signUpBtn" disabled={loading} />
+          <input
+            type="submit"
+            value={loading ? "Loading..." : "Register"}
+            className="signUpBtn"
+            disabled={loading}
+          />
         </form>
       </div>
     </div>
