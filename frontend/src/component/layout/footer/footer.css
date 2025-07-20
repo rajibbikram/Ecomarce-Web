@@ -1,18 +1,20 @@
+/* Modern Footer Styles */
 .ecom-footer {
-    background: linear-gradient(120deg, #2c3e50 70%, #3498db 100%);
+    background: linear-gradient(120deg, var(--primary) 70%, var(--accent) 100%);
     color: #fff;
-    padding: 4rem 0 2rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 3.5rem 0 1.5rem;
+    font-family: var(--font-main);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 -8px 32px rgba(44,62,80,0.13) inset;
+    box-shadow: 0 -8px 32px rgba(44,62,80,0.10) inset;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
     padding: 0 2rem;
 }
 .footer-section {
@@ -21,23 +23,23 @@
     z-index: 1;
 }
 .footer-section h3 {
-    color: #f1c40f;
-    font-size: 1.35rem;
-    margin-bottom: 1.5rem;
+    color: var(--accent);
+    font-size: 1.25rem;
+    margin-bottom: 1.2rem;
     position: relative;
-    padding-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
     font-weight: 900;
     letter-spacing: 0.5px;
-    text-shadow: 0 2px 8px rgba(44,62,80,0.10);
+    text-shadow: 0 2px 8px rgba(44,62,80,0.08);
 }
 .footer-section h3::after {
     content: '';
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 60px;
+    width: 48px;
     height: 3px;
-    background: linear-gradient(90deg, #3498db 60%, #f1c40f 100%);
+    background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
     border-radius: 2px;
     opacity: 0.85;
 }
@@ -47,10 +49,10 @@
     margin: 0;
 }
 .footer-links li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.7rem;
 }
 .footer-links a {
-    color: #ecf0f1;
+    color: #f3f4f6;
     text-decoration: none;
     display: inline-block;
     position: relative;
@@ -58,53 +60,55 @@
     font-weight: 600;
     letter-spacing: 0.2px;
     transition: color 0.2s, transform 0.18s;
+    border-radius: var(--border-radius-sm);
 }
 .footer-links a::after {
     content: '';
     display: block;
     width: 0;
     height: 2.5px;
-    background: linear-gradient(90deg, #f1c40f 60%, #3498db 100%);
+    background: linear-gradient(90deg, var(--accent) 60%, var(--primary) 100%);
     border-radius: 2px;
     transition: width 0.3s;
     margin-top: 2px;
 }
 .footer-links a:hover {
-    color: #f1c40f;
+    color: var(--accent);
     transform: translateX(4px) scale(1.04);
+    background: rgba(255,255,255,0.08);
 }
 .footer-links a:hover::after {
     width: 100%;
 }
 .footer-links a::before {
-    content: '→';
+    content: '\2192';
     position: absolute;
     left: -15px;
     opacity: 0;
     transition: opacity 0.2s, left 0.2s;
-    color: #f1c40f;
+    color: var(--accent);
 }
 .footer-links a:hover::before {
     opacity: 1;
     left: 0;
 }
 .contact-info {
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
 }
 .contact-item {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 .contact-item i {
     margin-right: 10px;
-    color: #f1c40f;
+    color: var(--accent);
     margin-top: 4px;
 }
 .social-links {
     display: flex;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
 }
 .social-links a {
     display: flex;
@@ -120,20 +124,20 @@
     transition: background 0.2s, color 0.2s, transform 0.18s, box-shadow 0.2s;
 }
 .social-links a:hover {
-    background: linear-gradient(90deg, #3498db 60%, #f1c40f 100%);
-    color: #2c3e50;
+    background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
+    color: #fff;
     transform: translateY(-3px) scale(1.13);
     box-shadow: 0 6px 18px rgba(44,62,80,0.18);
 }
 .newsletter-form {
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
 }
 .newsletter-form input {
     width: 100%;
-    padding: 0.85rem 1.1rem;
+    padding: 0.8rem 1rem;
     border: none;
     border-radius: 7px;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.7rem;
     background: rgba(255, 255, 255, 0.13);
     color: #fff;
     font-size: 1.05rem;
@@ -147,13 +151,13 @@
 .newsletter-form input:focus {
     outline: none;
     background: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 0 0 2px #f1c40f;
+    box-shadow: 0 0 0 2px var(--accent);
 }
 .newsletter-form button {
-    background: linear-gradient(90deg, #3498db 60%, #f1c40f 100%);
+    background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
     color: white;
     border: none;
-    padding: 0.85rem 1.7rem;
+    padding: 0.8rem 1.5rem;
     border-radius: 7px;
     cursor: pointer;
     width: 100%;
@@ -167,13 +171,13 @@
     box-shadow: 0 1px 4px rgba(44,62,80,0.10);
 }
 .newsletter-form button:hover {
-    background: linear-gradient(90deg, #f1c40f 60%, #3498db 100%);
+    background: linear-gradient(90deg, var(--accent) 60%, var(--primary) 100%);
     transform: translateY(-2px) scale(1.03);
 }
 .footer-bottom {
     text-align: center;
-    margin-top: 4rem;
-    padding: 1.5rem 2rem 0;
+    margin-top: 3rem;
+    padding: 1.2rem 2rem 0;
     border-top: 1.5px solid rgba(255, 255, 255, 0.13);
     font-size: 0.98rem;
     color: rgba(255, 255, 255, 0.8);
@@ -182,19 +186,19 @@
 @media (max-width: 992px) {
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2.5rem 1.5rem;
+        gap: 2rem 1.2rem;
     }
 }
 @media (max-width: 576px) {
     .footer-content {
         grid-template-columns: 1fr;
-        padding: 0 1.5rem;
+        padding: 0 1rem;
     }
     .footer-section {
         padding: 0;
     }
     .footer-bottom {
-        padding: 1.5rem 1.5rem 0;
-        margin-top: 2rem;
+        padding: 1.2rem 1rem 0;
+        margin-top: 1.5rem;
     }
 }

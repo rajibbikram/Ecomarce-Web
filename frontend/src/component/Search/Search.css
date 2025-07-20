@@ -26,7 +26,7 @@
 .searchBox input[type="submit"] {
   padding: 0.8rem 1.5rem;
   background: var(--primary-color);
-  color: white;
+  color: black;
   border: none;
   border-radius: 6px;
   font-size: 1rem;
@@ -37,4 +37,5 @@
 
 .searchBox input[type="submit"]:hover {
   background: var(--primary-hover);
+  color: white;
 }

@@ -4,6 +4,8 @@ import { Link, useNavigate, Navigate } from "react-router-dom";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import FaceIcon from "@mui/icons-material/Face";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useDispatch, useSelector } from "react-redux";
 import { login, register, clearError } from "../../actions/userAction";
 import { toast } from "react-toastify";
@@ -20,9 +22,11 @@ const LoginSignUp = () => {
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
 
   const [user, setUser] = useState({ name: "", email: "", password: "" });
   const { name, email, password } = user;
+  const [showSignupPassword, setShowSignupPassword] = useState(false);
 
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("/defaultAvatar.png");
@@ -57,6 +61,14 @@ const LoginSignUp = () => {
     }
   };
 
+  const toggleLoginPassword = () => {
+    setShowLoginPassword(!showLoginPassword);
+  };
+
+  const toggleSignupPassword = () => {
+    setShowSignupPassword(!showSignupPassword);
+  };
+
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -89,6 +101,15 @@ const LoginSignUp = () => {
 
   return (
     <div className="LoginSignUpContainer">
+      {/* Back Button */}
+      <button
+        className="login-back-btn"
+        onClick={() => navigate(-1)}
+        aria-label="Go Back"
+        type="button"
+      >
+        &#8592; Back
+      </button>
       <div className="loginSignUpBox">
         <div className="login_signUp_toggle">
           <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
@@ -116,15 +137,23 @@ const LoginSignUp = () => {
           <div className="loginPassword">
             <LockOpenIcon />
             <input
-              type="password"
+              type={showLoginPassword ? "text" : "password"}
               placeholder="Password"
               required
               value={loginPassword}
               onChange={(e) => setLoginPassword(e.target.value)}
             />
+            <button
+              type="button"
+              className="password-toggle-btn"
+              onClick={toggleLoginPassword}
+              aria-label={showLoginPassword ? "Hide password" : "Show password"}
+            >
+              {showLoginPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+            </button>
           </div>
 
-          <Link to="/password/forget">Forget Password?</Link>
+          <Link to="/password/forgot">Forget Password?</Link>
           <input
             type="submit"
             value={loading ? "Loading..." : "Login"}
@@ -167,13 +196,21 @@ const LoginSignUp = () => {
           <div className="signUpPassword">
             <LockOpenIcon />
             <input
-              type="password"
+              type={showSignupPassword ? "text" : "password"}
               placeholder="Password"
               required
               name="password"
               value={password}
               onChange={registerDataChange}
             />
+            <button
+              type="button"
+              className="password-toggle-btn"
+              onClick={toggleSignupPassword}
+              aria-label={showSignupPassword ? "Hide password" : "Show password"}
+            >
+              {showSignupPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+            </button>
           </div>
 
           <div id="registerImage">
