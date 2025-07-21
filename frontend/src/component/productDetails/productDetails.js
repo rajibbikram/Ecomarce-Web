@@ -3,25 +3,23 @@ import "./ProductDetails.css";
 import Carousel from "react-material-ui-carousel";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails } from "../../actions/productActions";
+import { addItemToCart } from "../../actions/cardAction";
 import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import MetaData from "../layout/MetaData";
 import ReviewCard from "./reviewCard";
 import Loader from "../layout/Loader";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const [quantity, setQuantity] = useState(1);
-
-    // Review modal state
     const [showReview, setShowReview] = useState(false);
     const [reviewRating, setReviewRating] = useState(0);
     const [reviewComment, setReviewComment] = useState("");
 
-    const { product, loading, error } = useSelector(
-        (state) => state.productDetails
-    );
+    const { product, loading, error } = useSelector((state) => state.productDetails);
 
     useEffect(() => {
         dispatch(getProductDetails(id));
@@ -46,48 +44,44 @@ const ProductDetails = () => {
         setQuantity(quantity - 1);
     };
 
-    // Review form handlers
+    const addToCartHandler = () => {
+        dispatch(addItemToCart(product._id, quantity));
+        toast.success("Item added to cart!");
+    };
+
     const openReviewForm = () => setShowReview(true);
     const closeReviewForm = () => {
         setShowReview(false);
         setReviewRating(0);
         setReviewComment("");
     };
+
     const handleReviewSubmit = (e) => {
         e.preventDefault();
-        // For now, just close the modal. Backend integration will come next.
+        // You may want to dispatch review submission here
         closeReviewForm();
+        toast.success("Review submitted!");
     };
 
-    // If still loading or product not loaded yet, show a fallback
-    if (loading) {
-        return <Loader />;
-    }
-
-    if (error) {
-        return <div className="error">Error: {error}</div>;
-    }
-
-    if (!product || !product._id) {
-        return <div className="error">Product not found</div>;
-    }
+    if (loading) return <Loader />;
+    if (error) return <div className="error">Error: {error}</div>;
+    if (!product || !product._id) return <div className="error">Product not found</div>;
 
     return (
         <Fragment>
-            <MetaData title={`${product.name} -- Ecomarce`} />
+            <MetaData title={`${product.name} -- Ecommerce`} />
             <div className="ProductDetails">
                 <div className="product-details-container">
                     <div className="product-images">
                         <Carousel>
-                            {product.images &&
-                                product.images.map((item, i) => (
-                                    <img
-                                        className="CarouselImage"
-                                        key={item.url}
-                                        src={item.url}
-                                        alt={`${product.name} - ${i + 1}`}
-                                    />
-                                ))}
+                            {product.images && product.images.map((item, i) => (
+                                <img
+                                    className="CarouselImage"
+                                    key={item.url}
+                                    src={item.url}
+                                    alt={`${product.name} - ${i + 1}`}
+                                />
+                            ))}
                         </Carousel>
                     </div>
 
@@ -103,21 +97,25 @@ const ProductDetails = () => {
                         </div>
 
                         <div className="detailsBlock-3">
-                            <h1>₹{product.price}</h1>
+                            <h1>RS {product.price}</h1>
                             <div className="detailsBlock-3-1">
                                 <div className="detailsBlock-3-1-1">
                                     <button onClick={decreaseQuantity}>-</button>
                                     <input value={quantity} type="number" readOnly />
                                     <button onClick={increaseQuantity}>+</button>
                                 </div>
-                                <button className="add-to-cart-btn" disabled={product.Stock < 1}>
+                                <button
+                                    className="add-to-cart-button"
+                                    disabled={product.Stock < 1}
+                                    onClick={addToCartHandler}
+                                >
                                     Add to Cart
                                 </button>
                             </div>
                         </div>
 
                         <p>
-                            Status: {" "}
+                            Status:
                             <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
                                 {product.Stock < 1 ? "OutOfStock" : "InStock"}
                             </b>
@@ -127,7 +125,9 @@ const ProductDetails = () => {
                             Description: <p>{product.description}</p>
                         </div>
 
-                        <button className="submitReview" onClick={openReviewForm}>Submit Review</button>
+                        <button className="submitReview" onClick={openReviewForm}>
+                            Submit Review
+                        </button>
 
                         {showReview && (
                             <div className="reviewModal">
@@ -160,7 +160,6 @@ const ProductDetails = () => {
                             </div>
                         )}
 
-                        {/* Reviews Section */}
                         <div className="productReviewsSection">
                             <h3>Customer Reviews</h3>
                             {product.reviews && product.reviews.length > 0 ? (
@@ -171,7 +170,6 @@ const ProductDetails = () => {
                                 <p className="noReviews">No reviews yet.</p>
                             )}
                         </div>
-
                     </div>
                 </div>
             </div>

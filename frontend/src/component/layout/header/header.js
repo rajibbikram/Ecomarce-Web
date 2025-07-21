@@ -62,7 +62,7 @@ const Header = () => {
 
         {/* cart + login */}
         <div className="header-icons">
-          <Link to="/cart">
+          <Link to="/Cart">
             <i className="fas fa-shopping-cart" />
           </Link>
           {isAuthenticated ? (

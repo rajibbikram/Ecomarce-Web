@@ -1,11 +1,12 @@
 import React, { useState, Fragment } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./header.css";
 import { SpeedDial, SpeedDialAction } from "@mui/lab";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonIcon from "@mui/icons-material/Person";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ListAltIcon from "@mui/icons-material/ListAlt";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"; // ✅ Fixed import
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../../actions/userAction";
 import { Backdrop } from "@mui/material";
@@ -14,11 +15,13 @@ const UserOptions = ({ user }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { cartItems } = useSelector((state) => state.cart);
 
   // Handlers for navigation
   const dashboard = () => navigate("/dashboard");
   const orders = () => navigate("/orders");
   const account = () => navigate("/account");
+  const cart = () => navigate("/cart");
   const logoutUser = () => {
     dispatch(logout());
     alert("Logout Successfully!");
@@ -28,6 +31,7 @@ const UserOptions = ({ user }) => {
   const options = [
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
+    { icon: <ShoppingCartIcon />, name: `Cart(${cartItems.length})`, func: cart }, 
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
@@ -42,7 +46,7 @@ const UserOptions = ({ user }) => {
 
   return (
     <Fragment>
-      <Backdrop  open={open} style={{zIndex: "11"}} />
+      <Backdrop open={open} style={{ zIndex: "11" }} />
       <SpeedDial
         className="speedDial"
         ariaLabel="User Options"

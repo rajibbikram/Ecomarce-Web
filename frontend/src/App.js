@@ -15,7 +15,9 @@ import Profile from "./component/User/Profile.js";
 import ProductRoute from './component/Route/ProductRoute.js';
 import UpdateProfile from './component/User/UpdateProfile.js';
 import UpdatePassword from './component/User/UpdatePassword.js';
-import ForgotPassword from './component/User/ForgotPassword.js'
+import ForgotPassword from './component/User/ForgotPassword.js';
+import ResetPassword from './component/User/ResetPassword.js';
+import Cart from './component/Card/Cart.js';
 
 
 function App() {
@@ -38,8 +40,10 @@ function App() {
         <Route path="/me/update" element={<ProductRoute element={<UpdateProfile />} />} />
         <Route path="/password/update" element={<ProductRoute element={<UpdatePassword />} />} />
         <Route path="/password/forgot" element={<ForgotPassword />}  />
+         <Route path="/password/reset/:token" element={<ResetPassword />}  />
 
         <Route path="/login" element={<LoginSignUp />} />
+         <Route path="/cart" element={<Cart/>} />
       </Routes>
 
       <Footer />

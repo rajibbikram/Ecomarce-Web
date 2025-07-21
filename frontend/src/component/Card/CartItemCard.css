@@ -1,0 +1,36 @@
+.CartItemCard {
+    display: flex;
+    align-items: flex-start;
+    gap: 1vmax;
+    padding: 1vmax 0;
+}
+
+.CartItemCard img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.cardDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vmax;
+}
+
+.cardDetails a {
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
+}
+
+.cardDetails span {
+    font-size: 0.9vmax;
+    color: gray;
+}
+
+.cardDetails .remove {
+    font-size: 0.9vmax;
+    color: brown;
+    cursor: pointer;
+}

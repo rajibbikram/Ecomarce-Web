@@ -31,6 +31,8 @@ const LoginSignUp = () => {
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("/defaultAvatar.png");
 
+  const [showBackButton, setShowBackButton] = useState(true);
+
   const loginSubmit = (e) => {
     e.preventDefault();
     dispatch(login(loginEmail, loginPassword));
@@ -94,7 +96,6 @@ const LoginSignUp = () => {
     }
   };
 
-  // ✅ If already authenticated, redirect to home
   if (isAuthenticated) {
     return <Navigate to="/home" />;
   }
@@ -102,14 +103,15 @@ const LoginSignUp = () => {
   return (
     <div className="LoginSignUpContainer">
       {/* Back Button */}
-      <button
-        className="login-back-btn"
-        onClick={() => navigate(-1)}
-        aria-label="Go Back"
-        type="button"
-      >
-        &#8592; Back
-      </button>
+      {showBackButton && (
+        <button
+          className="login-back-btn"
+          onClick={() => setShowBackButton(false)}
+        >
+          ← Back
+        </button>
+      )}
+
       <div className="loginSignUpBox">
         <div className="login_signUp_toggle">
           <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
@@ -154,6 +156,7 @@ const LoginSignUp = () => {
           </div>
 
           <Link to="/password/forgot">Forget Password?</Link>
+
           <input
             type="submit"
             value={loading ? "Loading..." : "Login"}
