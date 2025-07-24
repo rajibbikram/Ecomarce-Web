@@ -45,4 +45,4 @@ first day vdo ======> 1:43:36 MIN to filter product here
 
 11:20:0 payment method
 
-11:49:0  myorders
+11:49:0  myorders /orders

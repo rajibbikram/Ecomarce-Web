@@ -1,0 +1,122 @@
+.orderDetailsPage {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.orderDetailsPage h1 {
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 28px;
+  color: #333;
+}
+
+.sectionCard {
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+.sectionCard h2 {
+  font-size: 20px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+.sectionCard p {
+  margin: 10px 0;
+  color: #555;
+  font-size: 15px;
+}
+
+.sectionCard strong {
+  font-weight: 600;
+  color: #222;
+}
+
+.statusText {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.statusText.delivered {
+  color: green;
+}
+
+.statusText.pending {
+  color: orange;
+}
+
+.statusText.cancelled {
+  color: red;
+}
+
+.amountText {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.orderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.orderItemCard {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.orderItemCard img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.orderItemCard a {
+  flex: 1;
+  color: #007bff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.orderItemCard a:hover {
+  text-decoration: underline;
+}
+
+.orderItemCard span {
+  color: #444;
+  font-size: 15px;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .orderDetailsPage {
+    padding: 15px;
+  }
+
+  .orderItemCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .orderItemCard img {
+    margin-bottom: 10px;
+  }
+
+  .orderItemCard span {
+    font-size: 14px;
+  }
+}

@@ -32,6 +32,7 @@ import ConfirmOrder from './component/Card/ConfirmOrder.js';
 import Payment from './component/Card/Payment.js';
 import OrderSuccess from './component/Card/OrderSuccess.js';
 import MyOrders from './component/Order/MyOrders.js';
+import OrderDetails from './component/Order/OrderDetails.js';
 
 // Route protection
 import ProductRoute from './component/Route/ProductRoute.js';
@@ -83,9 +84,10 @@ function App() {
           <Route path="/shipping" element={<ProductRoute element={<Shipping />} />} />
           <Route path="/order/confirm" element={<ProductRoute element={<ConfirmOrder />} />} />
           <Route path="/success" element={<ProductRoute element={<OrderSuccess />} />} />
-           <Route path="/orders" element={<ProductRoute element={<MyOrders />} />} />
+          <Route path="/orders" element={<ProductRoute element={<MyOrders />} />} />
+          <Route path="/order/:id" element={<ProductRoute element={<OrderDetails />} />} />
           <Route path="/login" element={<LoginSignUp />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/Cart" element={<Cart />} />
 
           {/* Stripe Payment Route */}
           {stripeApiKey && (

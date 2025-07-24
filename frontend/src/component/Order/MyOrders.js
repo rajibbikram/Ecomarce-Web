@@ -14,7 +14,6 @@ const MyOrders = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    // ✅ Fixed from "myOrder" to "myOrders"
     const { loading, error, orders } = useSelector((state) => state.myOrders) || {};
     const { user } = useSelector((state) => state.user);
 
@@ -65,19 +64,18 @@ const MyOrders = () => {
         },
     ];
 
-    const rows = Array.isArray(orders)
-        ? orders.map((order) => ({
-            id: order._id,
-            status: order.orderStatus,
-            itemsQty: order.orderItems?.length || 0,
-            amount: order.totalPrice,
+    const rows = orders
+        ? orders.map((item) => ({
+            id: item._id,
+            status: item.orderStatus,
+            amount: item.totalPrice,
+            itemsQty: item.orderItem?.reduce((acc, curr) => acc + curr.quantity, 0) || 0,
         }))
         : [];
 
-
     return (
         <Fragment>
-            <MetaData title={`${user.name} - Orders`} />
+            <MetaData title={`${user?.name}'s Orders`} />
             {loading ? (
                 <Loader />
             ) : (
@@ -90,7 +88,7 @@ const MyOrders = () => {
                         className="myOrdersTable"
                         autoHeight
                     />
-                    <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
+                    <Typography id="myOrdersHeading">{user?.name}'s Orders</Typography>
                 </div>
             )}
         </Fragment>

@@ -10,6 +10,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"; // ✅ Fixed im
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../../actions/userAction";
 import { Backdrop } from "@mui/material";
+import { toast } from 'react-toastify';
 
 const UserOptions = ({ user }) => {
   const [open, setOpen] = useState(false);
@@ -24,7 +25,10 @@ const UserOptions = ({ user }) => {
   const cart = () => navigate("/cart");
   const logoutUser = () => {
     dispatch(logout());
-    alert("Logout Successfully!");
+    toast.success("Logout successful!", {
+    position: "top-center",
+    autoClose: 2000,
+  });
   };
 
   // Action list
