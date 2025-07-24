@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Search from "../../Search/Search";
 import LoginSignUp from "../../User/LoginSignUp";
@@ -8,87 +8,68 @@ import "./header.css";
 
 const Header = () => {
   const [showLogin, setShowLogin] = useState(false);
-  const [navOpen, setNavOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  const { loading, error, isAuthenticated, user } =
-    useSelector((state) => state.user) || {};
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const closeOverlays = () => {
-    setNavOpen(false);
-    setShowLogin(false);
-  };
+  const { isAuthenticated, user } = useSelector((state) => state.user) || {};
 
   return (
     <>
-      {/* mobile dark‑out */}
-      <div
-        className={`mobile-nav-overlay ${navOpen ? "active" : ""}`}
-        onClick={closeOverlays}
-      />
+      <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div className="container-fluid">
+          <Link className="navbar-brand fw-bold" to="/">
+            <span role="img" aria-label="cart">🛒</span> Ecomarce
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-      <header className={`ecom-header ${scrolled ? "scrolled" : ""}`}>
-        <div className="logo">Ecomarce</div>
-
-        {/* main nav */}
-        <nav className={`nav-links ${navOpen ? "active" : ""}`}>
-          <Link to="/" onClick={() => setNavOpen(false)}>
-            Home
-          </Link>
-          <Link to="/products" onClick={() => setNavOpen(false)}>
-            Products
-          </Link>
-          <Link to="/about" onClick={() => setNavOpen(false)}>
-            About
-          </Link>
-          <Link to="/contact" onClick={() => setNavOpen(false)}>
-            Contact
-          </Link>
-          {/* Removed the search-in-drawer here */}
-        </nav>
-
-        {/* search stays visible on tablet‑plus */}
-        <div className="search-section">
-          <Search />
+          <div className="collapse navbar-collapse" id="mainNavbar">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/products">Products</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/AboutPage">About</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/contact">Contact</Link>
+              </li>
+            </ul>
+            <div className="d-flex align-items-center gap-3">
+              <div className="d-none d-lg-block">
+                <Search />
+              </div>
+              {isAuthenticated && (
+                <Link to="/cart" className="btn btn-outline-primary position-relative">
+                  <i className="fas fa-shopping-cart"></i>
+                </Link>
+              )}
+              {isAuthenticated ? (
+                <UserOptions user={user} />
+              ) : (
+                <button className="btn btn-primary" onClick={() => setShowLogin(true)}>
+                  <i className="fa-solid fa-right-to-bracket me-2" />Login
+                </button>
+              )}
+            </div>
+          </div>
         </div>
-
-        {/* cart + login */}
-        <div className="header-icons">
-          <Link to="/Cart">
-            <i className="fas fa-shopping-cart" />
-          </Link>
-          {isAuthenticated ? (
-            <UserOptions user={user} />
-          ) : (
-            <span onClick={() => setShowLogin(true)}>
-              <i className="fa-solid fa-right-to-bracket" />
-            </span>
-          )}
-        </div>
-
-        {/* hamburger / close */}
-        <button
-          className="menu-toggle"
-          aria-label="toggle menu"
-          onClick={() => setNavOpen((p) => !p)}
-        >
-          <i className={`fas ${navOpen ? "fa-times" : "fa-bars"}`} />
-        </button>
-      </header>
+      </nav>
 
       {/* login modal */}
       {showLogin && (
-        <div className="login-modal-overlay" onClick={closeOverlays}>
-          <div className="login-modal" onClick={(e) => e.stopPropagation()}>
-            <LoginSignUp onClose={closeOverlays} />
+        <div className="login-modal-overlay" onClick={() => setShowLogin(false)}>
+          <div className="login-modal" onClick={e => e.stopPropagation()}>
+            <LoginSignUp onClose={() => setShowLogin(false)} />
           </div>
         </div>
       )}

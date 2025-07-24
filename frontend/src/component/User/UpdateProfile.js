@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProfile, clearError, loadUser } from "../../actions/userAction";
 import { toast } from "react-toastify";
 import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
+import MetaData from "../layout/MetaData";
 
 const UpdateProfile = () => {
   const dispatch = useDispatch();
@@ -68,6 +69,7 @@ const UpdateProfile = () => {
 
   return (
     <Fragment>
+      <MetaData title="Update Profile" />
       <div className="updateProfileContainer">
         {/* Back Button */}
         <button

@@ -1,0 +1,137 @@
+/* ConfirmOrder.css */
+
+.confirmOrderPage {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+  background-color: #f9f9f9;
+  min-height: 80vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.confirmOrderPage > div:first-child {
+  flex: 0.6;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+}
+
+.confirmShippingArea,
+.confirmCartItems {
+  margin-bottom: 2rem;
+}
+
+.confirmShippingAreaBox div,
+.confirmCartItemsContainer > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.8rem 0;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.confirmShippingAreaBox div p,
+.confirmCartItemsContainer div p {
+  font-weight: 600;
+  color: #444;
+  margin: 0;
+  width: 100px;
+}
+
+.confirmShippingAreaBox div span,
+.confirmCartItemsContainer div span {
+  flex: 1;
+  color: #555;
+  word-break: break-word;
+}
+
+.confirmCartItemsContainer > div img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 1rem;
+}
+
+.confirmCartItemsContainer > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.confirmCartItemsContainer > div a {
+  flex: 1;
+  text-decoration: none;
+  color: #1976d2;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.confirmCartItemsContainer > div a:hover {
+  color: #004ba0;
+}
+
+.orderSummary {
+  flex: 0.35;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.orderSummary > div > div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.7rem 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.orderSummaryTotal {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #1976d2;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  color: #1976d2;
+}
+
+.orderSummary button {
+  margin-top: 2rem;
+  padding: 0.7rem 1rem;
+  background-color: #1976d2;
+  border: none;
+  color: white;
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.orderSummary button:hover {
+  background-color: #004ba0;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .confirmOrderPage {
+    flex-direction: column;
+  }
+
+  .confirmOrderPage > div:first-child,
+  .orderSummary {
+    flex: 1;
+    margin-bottom: 2rem;
+  }
+}

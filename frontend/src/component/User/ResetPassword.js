@@ -10,6 +10,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import MetaData from "../layout/MetaData";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -50,66 +51,69 @@ const ResetPassword = () => {
   }, [dispatch, error, success, navigate]);
 
   return (
-    <div className="resetPasswordContainer">
-      <button
-        className="password-back-btn"
-        onClick={() => navigate(-1)}
-        aria-label="Go Back"
-        type="button"
-      >
-        ← Back
-      </button>
+    <>
+      <MetaData title="Reset Password" />
+      <div className="resetPasswordContainer">
+        <button
+          className="password-back-btn"
+          onClick={() => navigate(-1)}
+          aria-label="Go Back"
+          type="button"
+        >
+          ← Back
+        </button>
 
-      <div className="resetPasswordUpBox">
-        <h2>Reset Password</h2>
+        <div className="resetPasswordUpBox">
+          <h2>Reset Password</h2>
 
-        <form className="resetPasswordForm" onSubmit={submitHandler}>
-          <div className="loginPassword">
-            <LockOpenIcon />
-            <input
-              type={showNewPassword ? "text" : "password"}
-              placeholder="New Password"
-              required
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            />
+          <form className="resetPasswordForm" onSubmit={submitHandler}>
+            <div className="loginPassword">
+              <LockOpenIcon />
+              <input
+                type={showNewPassword ? "text" : "password"}
+                placeholder="New Password"
+                required
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="password-toggle-btn"
+                onClick={() => setShowNewPassword(!showNewPassword)}
+              >
+                {showNewPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              </button>
+            </div>
+
+            <div className="loginPassword">
+              <LockIcon />
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirm Password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="password-toggle-btn"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              </button>
+            </div>
+
             <button
-              type="button"
-              className="password-toggle-btn"
-              onClick={() => setShowNewPassword(!showNewPassword)}
+              type="submit"
+              className="resetPasswordBtn"
+              disabled={loading}
             >
-              {showNewPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              {loading ? "Updating..." : "Update Password"}
             </button>
-          </div>
-
-          <div className="loginPassword">
-            <LockIcon />
-            <input
-              type={showConfirmPassword ? "text" : "password"}
-              placeholder="Confirm Password"
-              required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            <button
-              type="button"
-              className="password-toggle-btn"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            >
-              {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-            </button>
-          </div>
-
-          <button
-            type="submit"
-            className="resetPasswordBtn"
-            disabled={loading}
-          >
-            {loading ? "Updating..." : "Update Password"}
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

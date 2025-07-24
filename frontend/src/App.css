@@ -5,12 +5,13 @@
 }
 
 :root {
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --secondary: #64748b;
-  --background: #f8fafc;
+  --primary: #1e293b;         /* Deep blue-gray */
+  --primary-hover: #0f172a;   /* Even deeper for hover */
+  --secondary: #64748b;       /* Muted blue */
+  --background: #f1f5f9;      /* Light background */
   --surface: #fff;
-  --accent: #fbbf24;
+  --accent: #fbbf24;          /* Vibrant yellow */
+  --accent-dark: #b45309;     /* Darker accent for hover */
   --danger: #ef4444;
   --success: #22c55e;
   --border-radius: 14px;

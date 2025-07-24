@@ -11,12 +11,13 @@ import LockIcon from "@mui/icons-material/Lock";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import MetaData from "../layout/MetaData";
 
 const UpdatePassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // ✅ Fallback to empty object to avoid destructuring undefined
+  // Fallback to empty object to avoid destructuring undefined
   const {
     error = null,
     isUpdated = false,
@@ -70,6 +71,7 @@ const UpdatePassword = () => {
 
   return (
     <Fragment>
+      <MetaData title="Change Password" />
       <div className="updatePasswordContainer">
         {/* Back Button */}
         <button

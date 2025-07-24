@@ -1,6 +1,6 @@
 /* Modern Footer Styles */
 .ecom-footer {
-    background: linear-gradient(120deg, var(--primary) 70%, var(--accent) 100%);
+    background: rgb(1, 1, 95);
     color: #fff;
     padding: 3.5rem 0 1.5rem;
     font-family: var(--font-main);
@@ -73,9 +73,9 @@
     margin-top: 2px;
 }
 .footer-links a:hover {
-    color: var(--accent);
+    color: var(--accent-dark);
     transform: translateX(4px) scale(1.04);
-    background: rgba(255,255,255,0.08);
+    background: rgba(251,191,36,0.13); /* subtle accent background */
 }
 .footer-links a:hover::after {
     width: 100%;
@@ -124,7 +124,7 @@
     transition: background 0.2s, color 0.2s, transform 0.18s, box-shadow 0.2s;
 }
 .social-links a:hover {
-    background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
+    background: linear-gradient(90deg, var(--accent-dark) 60%, var(--primary-hover) 100%);
     color: #fff;
     transform: translateY(-3px) scale(1.13);
     box-shadow: 0 6px 18px rgba(44,62,80,0.18);
@@ -201,4 +201,46 @@
         padding: 1.2rem 1rem 0;
         margin-top: 1.5rem;
     }
+}
+
+/* Add a smooth fade-in for the footer */
+.ecom-footer {
+    animation: fadeInFooter 1s ease;
+}
+
+@keyframes fadeInFooter {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* Make social icons pop on hover */
+.social-links a:hover {
+    background: linear-gradient(90deg, var(--accent-dark) 60%, var(--primary-hover) 100%);
+    color: #fff;
+    transform: translateY(-3px) scale(1.18);
+    box-shadow: 0 8px 24px rgba(44,62,80,0.22);
+}
+
+/* Add a back-to-top button */
+.back-to-top {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    background: var(--accent);
+    color: var(--primary);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.18);
+    transition: background 0.2s, transform 0.18s;
+}
+.back-to-top:hover {
+    background: var(--primary-hover);
+    color: var(--accent);
+    transform: scale(1.1);
 }

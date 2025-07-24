@@ -1,0 +1,36 @@
+.orderSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 2rem;
+}
+
+.successIcon {
+  font-size: 5rem;
+  color: #4caf50; /* Green */
+  margin-bottom: 1rem;
+}
+
+.successText {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.viewOrdersLink {
+  text-decoration: none;
+  background-color: #4caf50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.viewOrdersLink:hover {
+  background-color: #388e3c;
+}

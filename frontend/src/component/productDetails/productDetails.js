@@ -20,6 +20,7 @@ const ProductDetails = () => {
     const [reviewComment, setReviewComment] = useState("");
 
     const { product, loading, error } = useSelector((state) => state.productDetails);
+    const { isAuthenticated } = useSelector((state) => state.user);
 
     useEffect(() => {
         dispatch(getProductDetails(id));
@@ -45,6 +46,10 @@ const ProductDetails = () => {
     };
 
     const addToCartHandler = () => {
+        if (!isAuthenticated) {
+            toast.error("Please login first!");
+            return;
+        }
         dispatch(addItemToCart(product._id, quantity));
         toast.success("Item added to cart!");
     };

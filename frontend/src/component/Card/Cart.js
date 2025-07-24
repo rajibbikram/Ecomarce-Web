@@ -3,9 +3,12 @@ import "./Cart.css";
 import CartItemCard from "./CartItemCard";
 import { useSelector, useDispatch } from "react-redux";
 import { addItemToCart, removeItemsFromCart } from "../../actions/cardAction";
+import { useNavigate, Link } from "react-router-dom";
+import MetaData from "../layout/MetaData";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cartItems } = useSelector((state) => state.cart);
 
   const increaseQuantity = (id, quantity, stock) => {
@@ -18,13 +21,27 @@ const Cart = () => {
     dispatch(addItemToCart(id, quantity - 1));
   };
 
+  const checkoutHandler = () => {
+    navigate("/shipping");
+  };
+
   const grossTotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
 
+  if (cartItems.length === 0) {
+    return (
+      <div className="emptyCart">
+        <p>Your cart is empty</p>
+        <Link to="/products">View Products</Link>
+      </div>
+    );
+  }
+
   return (
     <Fragment>
+      <MetaData title="Your Cart" />
       <div className="cartPage">
         <div className="cartHeader">
           <p>Product</p>
@@ -53,7 +70,7 @@ const Cart = () => {
             <p>Rs: {grossTotal}</p>
           </div>
           <div className="checkoutBtn">
-            <button className="bton">Check Out</button>
+            <button className="bton" onClick={checkoutHandler}>Check Out</button>
           </div>
         </div>
       </div>

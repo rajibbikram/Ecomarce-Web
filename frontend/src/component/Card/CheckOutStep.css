@@ -1,0 +1,42 @@
+/* Centered stepper */
+.MuiStepper-root {
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 600px;
+}
+
+/* Step icon sizing */
+.MuiStepIcon-root {
+  font-size: 2rem;
+}
+
+/* Active and completed icon colors */
+.MuiStepIcon-root.Mui-active {
+  color: tomato;
+}
+
+.MuiStepIcon-root.Mui-completed {
+  color: green;
+}
+
+/* Label styles */
+.MuiStepLabel-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .MuiStepper-root {
+    width: 95%;
+    margin: 1rem auto;
+  }
+
+  .MuiStepLabel-label {
+    font-size: 0.8rem;
+  }
+
+  .MuiStepIcon-root {
+    font-size: 1.6rem;
+  }
+}

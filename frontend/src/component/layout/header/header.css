@@ -248,8 +248,8 @@
 /* SpeedDial (UserOptions) styles */
 .speedDial {
   position: fixed;
-  top: 90px;
-  right: 16px;
+  top: 67px;
+  right: 0px;
   z-index: 1200;
   padding: 4px;
 }

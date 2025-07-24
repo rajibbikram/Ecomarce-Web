@@ -1,4 +1,4 @@
-/* Modern Product Card Styles */
+/* Modern, Minimal Product Card Styles */
 @keyframes fadeInProduct {
   from { opacity: 0; transform: translateY(30px) scale(0.97); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -10,63 +10,46 @@
   align-items: center;
   text-decoration: none;
   background-color: var(--surface);
-  border: 1.5px solid #e2e8f0;
-  border-radius: var(--border-radius);
-  padding: 1.5rem 1.2rem 1.8rem 1.2rem;
-  transition: var(--transition);
+  border-radius: 20px;
+  padding: 2rem 1.5rem 2.2rem 1.5rem;
+  transition: box-shadow 0.25s cubic-bezier(0.23, 1, 0.32, 1), transform 0.22s cubic-bezier(0.23, 1, 0.32, 1);
   color: #1e293b;
   width: 100%;
-  max-width: 300px;
-  margin: 1rem auto;
-  box-shadow: var(--shadow);
+  max-width: 320px;
+  margin: 1.5rem auto;
+  box-shadow: 0 2px 8px rgba(30,41,59,0.07), 0 8px 32px rgba(30,41,59,0.06);
   position: relative;
   animation: fadeInProduct 0.7s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
-}
-
-.product::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
-  transition: left 0.6s;
-  z-index: 1;
+  border: none;
 }
 
 .product:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--primary);
-}
-
-.product:hover::before {
-  left: 100%;
+  transform: translateY(-8px) scale(1.025);
+  box-shadow: 0 8px 32px rgba(30,41,59,0.13), 0 2px 8px rgba(30,41,59,0.07);
 }
 
 .product img {
   width: 100%;
   height: 220px;
   object-fit: cover;
-  border-radius: var(--border-radius-sm);
-  margin-bottom: 1.2rem;
-  border: 1.5px solid #f1f5f9;
+  border-radius: 14px;
+  margin-bottom: 1.5rem;
   box-shadow: 0 2px 8px rgba(30, 41, 59, 0.07);
   transition: transform 0.25s, box-shadow 0.25s;
   position: relative;
   z-index: 2;
+  border: none;
 }
 
 .product:hover img {
-  transform: scale(1.05);
+  transform: scale(1.04);
   box-shadow: 0 6px 18px rgba(30, 41, 59, 0.13);
 }
 
 .product p {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.18rem;
+  font-weight: 800;
   margin: 0.8rem 0 0.4rem 0;
   text-align: center;
   color: #1e293b;
@@ -101,6 +84,7 @@
   position: relative;
   z-index: 2;
   line-height: 1.5;
+  font-weight: 400;
 }
 
 .product span {
@@ -108,11 +92,12 @@
   color: var(--secondary);
   position: relative;
   z-index: 2;
+  font-weight: 400;
 }
 
 .product span:last-child {
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: 900;
   color: var(--primary);
   margin-top: 0.8rem;
   position: relative;
@@ -120,37 +105,40 @@
 }
 
 .add-to-cart-btn {
-  opacity: 0;
+  opacity: 1;
   position: absolute;
   bottom: 1.2rem;
   left: 50%;
-  transform: translateX(-50%) scale(0.95);
+  transform: translateX(-50%) scale(1);
   background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
   color: #fff;
   border: none;
-  border-radius: var(--border-radius-sm);
-  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  padding: 0.8rem 2rem;
   font-size: 1.1rem;
   font-weight: 700;
-  box-shadow: var(--shadow);
-  transition: opacity 0.3s, transform 0.3s;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s, opacity 0.2s;
   cursor: pointer;
   z-index: 3;
+  display: block;
 }
 
 .product:hover .add-to-cart-btn {
-  opacity: 1;
+  background: linear-gradient(90deg, var(--accent) 60%, var(--primary) 100%);
+  box-shadow: 0 8px 32px rgba(30,41,59,0.13);
+  color: #fff;
   transform: translateX(-50%) scale(1.05);
+  opacity: 1;
 }
 
 @media (max-width: 900px) {
   .product {
-    max-width: 280px;
+    max-width: 95vw;
     padding: 1.2rem 1rem 1.5rem 1rem;
   }
-  
   .product img {
-    height: 200px;
+    height: 180px;
   }
 }
 
@@ -159,21 +147,24 @@
     max-width: 100%;
     padding: 1rem 0.8rem 1.2rem 0.8rem;
   }
-  
   .product img {
-    height: 180px;
+    height: 140px;
   }
-  
   .add-to-cart-btn {
     font-size: 1rem;
-    padding: 0.6rem 1.2rem;
+    padding: 0.7rem 1.2rem;
+    position: static;
+    transform: none;
+    margin: 1rem auto 0 auto;
+    width: 100%;
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+    display: block;
   }
-  
   .product p {
-    font-size: 1.1rem;
+    font-size: 1.08rem;
   }
-  
   .product span:last-child {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
