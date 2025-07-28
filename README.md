@@ -4,11 +4,7 @@
 
 ---
 
-## 🚀 Live Demo
 
-> _(If deployed)_ https://your-ecomarce-demo.vercel.app
-
----
 
 ## 📌 Key Features
 
