@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./LoginSignUp.css";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link, useNavigate, Navigate, useLocation } from "react-router-dom";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import FaceIcon from "@mui/icons-material/Face";
@@ -11,11 +11,12 @@ import { login, register, clearError } from "../../actions/userAction";
 import { toast } from "react-toastify";
 import MetaData from "../layout/MetaData";
 
-const LoginSignUp = () => {
+const LoginSignUp = ({ onClose }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const { error, isAuthenticated, loading } = useSelector((state) => state.user);
+  const { error, isAuthenticated, loading, user: currentUser } = useSelector((state) => state.user);
 
   const loginTab = useRef(null);
   const registerTab = useRef(null);
@@ -31,8 +32,6 @@ const LoginSignUp = () => {
 
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("/defaultAvatar.png");
-
-  const [showBackButton, setShowBackButton] = useState(true);
 
   const loginSubmit = (e) => {
     e.preventDefault();
@@ -80,8 +79,22 @@ const LoginSignUp = () => {
 
     if (isAuthenticated) {
       toast.success("Login successful!");
+      // Close the modal when user is authenticated, or navigate if used as route
+      if (onClose) {
+        onClose();
+      } else {
+        // Check if user is admin and redirect accordingly
+        if (currentUser?.role === "admin") {
+          // Admin users go to admin dashboard
+          navigate("/admin/dashboard", { replace: true });
+        } else {
+          // Regular users go to intended destination or home
+          const from = location.state?.from?.pathname || "/";
+          navigate(from, { replace: true });
+        }
+      }
     }
-  }, [dispatch, error, isAuthenticated]);
+  }, [dispatch, error, isAuthenticated, onClose, currentUser, navigate, location]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -97,19 +110,17 @@ const LoginSignUp = () => {
     }
   };
 
-  if (isAuthenticated) {
-    return <Navigate to="/home" />;
-  }
+  // Remove the Navigate component since we handle redirect through modal closing
 
   return (
     <>
       <MetaData title="Login or Sign Up" />
-      <div className="LoginSignUpContainer">
+      <div className={`LoginSignUpContainer ${onClose ? 'modal-mode' : ''}`}>
         {/* Back Button */}
-        {showBackButton && (
+        {onClose && (
           <button
             className="login-back-btn"
-            onClick={() => setShowBackButton(false)}
+            onClick={onClose}
           >
             ← Back
           </button>

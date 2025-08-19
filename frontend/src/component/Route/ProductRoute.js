@@ -1,23 +1,24 @@
-// src/component/Route/ProductRoute.js
-import React, { Fragment } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
+import Loader from "../layout/Loader";
 
-const ProductRoute = ({ element: Component }) => {
-    const { loading, isAuthenticated } = useSelector((state) => state.user);
-    const location = useLocation();
+const ProductRoute = ({ element }) => {
+  const { loading, isAuthenticated } = useSelector((state) => state.user);
+  const location = useLocation();
 
-    return (
-        <Fragment>
-            {!loading && (
-                isAuthenticated ? (
-                    Component
-                ) : (
-                    <Navigate to="/login" replace state={{ from: location }} />
-                )
-            )}
-        </Fragment>
-    );
+  // Show loader while checking authentication
+  if (loading) {
+    return <Loader />;
+  }
+
+  // If authenticated, render the protected component
+  if (isAuthenticated) {
+    return element;
+  }
+
+  // If not authenticated, redirect to login with return location
+  return <Navigate to="/login" replace state={{ from: location }} />;
 };
 
 export default ProductRoute;

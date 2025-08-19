@@ -26,7 +26,7 @@ const Home = () => {
             {/* HERO SECTION */}
             <section className="hero">
                 <div className="hero-content">
-                    <h1>Welcome to <span>Ecomarce</span></h1>
+                    <h1>Welcome to <span className="text-dark">Ecomarce</span></h1>
                     <div className="hero-tagline">Your one-stop shop for tech, fashion, and more. Discover exclusive deals and new arrivals every day!</div>
                     <Link to="/products" className="btn-primary">Shop Now <span style={{marginLeft: '8px', fontWeight: 'bold'}}>&rarr;</span></Link>
                 </div>

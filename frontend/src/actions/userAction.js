@@ -25,6 +25,7 @@ import {
   RESET_PASSWORD_FAIL,
   CLEAR_ERROR,
 } from "../constants/userConstants";
+import { clearCart } from "./cardAction";
 
 // Login user
 export const login = (email, password) => async (dispatch) => {
@@ -116,7 +117,13 @@ export const logout = () => async (dispatch) => {
       type: LOGOUT_SUCCESS
     });
 
+    // Clear cart state
+    dispatch(clearCart());
+
+    // Clear all user-related data from localStorage
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("shippingInfo");
   } catch (error) {
     dispatch({
       type: LOGOUT_FAIL,

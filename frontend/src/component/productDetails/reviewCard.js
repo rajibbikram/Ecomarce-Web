@@ -1,35 +1,52 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
-import "./ProductDetails.css";
+import "./reviewCard.css";
 
-const getInitial = (name) => name ? name.charAt(0).toUpperCase() : "U";
+const STAR_COUNT = 5;
+const STAR_SIZE = 20;
+const STAR_INACTIVE_COLOR = "rgba(20,20,20,0.1)";
+const STAR_ACTIVE_COLOR = "#ffd700";
+
+const getInitial = (name) => name?.charAt(0).toUpperCase() || "U";
 
 const ReviewCard = ({ review }) => {
+  const {
+    avatar = null,
+    name = "Unknown",
+    rating = 0,
+    comment = "No comment provided.",
+    date = null,
+  } = review || {};
+
   return (
     <div className="reviewCard">
       <div className="reviewCardHeader">
         <div className="reviewAvatar">
-          {review.avatar ? (
-            <img src={review.avatar} alt={review.name} />
+          {avatar ? (
+            <img src={avatar} alt={name} />
           ) : (
-            <span className="avatarInitial">{getInitial(review.name)}</span>
+            <span className="avatarInitial">{getInitial(name)}</span>
           )}
         </div>
-        <span className="reviewerName">{review.name}</span>
+
+        <span className="reviewerName">{name}</span>
+
         <ReactStars
-          count={5}
-          value={review.rating}
+          count={STAR_COUNT}
+          value={rating}
           edit={false}
-          size={20}
+          size={STAR_SIZE}
           isHalf={true}
-          color="rgba(20,20,20,0.1)"
-          activeColor="#ffd700"
+          color={STAR_INACTIVE_COLOR}
+          activeColor={STAR_ACTIVE_COLOR}
         />
       </div>
-      <p className="reviewComment">{review.comment}</p>
-      {review.date && (
+
+      <p className="reviewComment">{comment}</p>
+
+      {date && (
         <span className="reviewDate">
-          {new Date(review.date).toLocaleDateString()}
+          {new Date(date).toLocaleDateString()}
         </span>
       )}
     </div>

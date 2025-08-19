@@ -12,7 +12,7 @@ const OrderSuccess = () => {
 
       <Typography>Your order has been placed successfully!</Typography>
 
-      <Link to="/orders">View Orders</Link>
+      <Link to="/order">View Orders</Link>
     </div>
   );
 };

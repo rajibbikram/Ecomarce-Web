@@ -111,7 +111,7 @@ const ProductDetails = () => {
                                 </div>
                                 <button
                                     className="add-to-cart-button"
-                                    disabled={product.Stock < 1}
+                                    disabled={product.Stock <= 0}
                                     onClick={addToCartHandler}
                                 >
                                     Add to Cart
@@ -121,8 +121,8 @@ const ProductDetails = () => {
 
                         <p>
                             Status:
-                            <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-                                {product.Stock < 1 ? "OutOfStock" : "InStock"}
+                            <b className={product.Stock <= 0 ? "redColor" : "greenColor"}>
+                                {product.Stock <= 0 ? "OutOfStock" : "InStock"}
                             </b>
                         </p>
 

@@ -15,6 +15,13 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
     totalPrice,
   } = req.body;
 
+  // Debug: Log the incoming order data
+  console.log("Order data received:", {
+    orderItems: orderItems,
+    orderItemsLength: orderItems?.length,
+    totalPrice: totalPrice
+  });
+
   const order = await Order.create({
     shippingInfo,
     orderItems,
@@ -25,6 +32,13 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
     totalPrice,
     paidAt: Date.now(),
     user: req.user._id,
+  });
+
+  // Debug: Log the created order
+  console.log("Order created:", {
+    orderId: order._id,
+    orderItemsLength: order.orderItems?.length,
+    orderItems: order.orderItems
   });
 
   res.status(201).json({
@@ -57,6 +71,16 @@ exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
 exports.myOrder = catchAsyncErrors(async (req, res, next) => {
 
     const orders = await Order.find({ user: req.user._id });
+
+    // Debug: Log the orders being returned
+    console.log("Orders found for user:", orders.length);
+    orders.forEach((order, index) => {
+      console.log(`Order ${index + 1}:`, {
+        orderId: order._id,
+        orderItemsLength: order.orderItems?.length,
+        orderItems: order.orderItems
+      });
+    });
 
     res.status(200).json({
         success: true,

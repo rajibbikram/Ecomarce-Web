@@ -25,14 +25,14 @@
 
 .searchBox input[type="submit"] {
   padding: 0.8rem 1.5rem;
-  background: var(--primary-color);
+  border: 1px solid #ddd;
   color: black;
-  border: none;
+
   border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition:  0.2s;
 }
 
 .searchBox input[type="submit"]:hover {

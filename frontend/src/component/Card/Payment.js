@@ -23,6 +23,9 @@ const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
   const payBtn = useRef(null);
 
+  // Debug: Log the retrieved orderInfo
+  console.log("Retrieved orderInfo from sessionStorage:", orderInfo);
+
   const stripe = useStripe();
   const elements = useElements();
   const alert = useAlert();
@@ -49,6 +52,17 @@ const Payment = () => {
     shippingPrice: orderInfo?.shippingCharges || 0,
     totalPrice: orderInfo?.totalPrice || 0,
   };
+
+  // Debug: Log the order object being sent
+  console.log("Order being created:", order);
+  console.log("Cart items from orderInfo:", orderInfo?.cartItems);
+  console.log("Cart items structure check:", orderInfo?.cartItems?.map(item => ({
+    name: item.name,
+    price: item.price,
+    quantity: item.quantity,
+    image: item.image,
+    product: item.product
+  })));
 
   const submitHandler = async (e) => {
     e.preventDefault();

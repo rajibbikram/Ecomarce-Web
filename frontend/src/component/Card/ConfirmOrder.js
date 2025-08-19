@@ -27,7 +27,12 @@ const ConfirmOrder = () => {
       shippingCharges: shippingCharges.toFixed(2),
       tax: tax.toFixed(2),
       totalPrice: totalPrice.toFixed(2),
+      cartItems: cartItems, // Add cart items to orderInfo
     };
+
+    // Debug: Log what's being stored
+    console.log("Data being stored in sessionStorage:", data);
+    console.log("Cart items:", cartItems);
 
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
     navigate("/process/payment");

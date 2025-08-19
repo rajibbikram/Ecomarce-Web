@@ -1,0 +1,39 @@
+.reviewCard {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.reviewCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.reviewAvatar img,
+.avatarInitial {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviewerName {
+  font-weight: bold;
+}
+
+.reviewComment {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.reviewDate {
+  font-size: 0.8rem;
+  color: gray;
+}

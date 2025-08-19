@@ -208,7 +208,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(44,62,80,0.18);
+  background: rgba(44,62,80,0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -222,6 +224,8 @@
   justify-content: center;
   z-index: 2100;
   animation: fadeInModal 0.4s;
+  max-width: 90vw;
+  max-height: 90vh;
 }
 @keyframes fadeInModal {
   from { opacity: 0; transform: scale(0.95); }
@@ -234,7 +238,7 @@
 
 @media (min-width: 0px) {
   .login-modal {
-    margin-top: 60px;
+    /* Remove margin-top to ensure proper centering */
   }
 }
 

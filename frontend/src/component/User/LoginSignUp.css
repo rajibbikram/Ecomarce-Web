@@ -21,6 +21,17 @@ html, body {
   z-index: 1000;
   animation: fadeInLoginModal 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
+
+/* When used inside a modal, remove the overlay styling */
+.LoginSignUpContainer.modal-mode {
+  position: static;
+  width: auto;
+  height: auto;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  animation: none;
+}
 .loginSignUpBox {
   background: #fff;
   padding: 24px 32px;

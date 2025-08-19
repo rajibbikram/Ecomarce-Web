@@ -19,16 +19,18 @@ const UserOptions = ({ user }) => {
   const { cartItems } = useSelector((state) => state.cart);
 
   // Handlers for navigation
-  const dashboard = () => navigate("/dashboard");
+  const dashboard = () => navigate("/admin/dashboard");
   const orders = () => navigate("/orders");
   const account = () => navigate("/account");
   const cart = () => navigate("/cart");
   const logoutUser = () => {
     dispatch(logout());
     toast.success("Logout successful!", {
-    position: "top-center",
-    autoClose: 2000,
-  });
+      position: "top-center",
+      autoClose: 2000,
+    });
+    // Redirect to login page after logout
+    navigate("/login");
   };
 
   // Action list

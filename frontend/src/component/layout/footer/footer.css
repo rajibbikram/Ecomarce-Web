@@ -7,7 +7,6 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 -8px 32px rgba(44,62,80,0.10) inset;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 .footer-content {
     max-width: 1200px;
